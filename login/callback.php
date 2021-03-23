@@ -19,5 +19,5 @@ $outh = new TwitterOAuth($CONF["CK"], $CONF["CS"], $_SESSION["OT"], $_SESSION["O
 $ACSSES_TOKEN = $outh -> oauth("oauth/access_token", ["oauth_verifier" => $_GET["oauth_verifier"]]);
 $_SESSION = [];
 $_SESSION["ACSSES_TOKEN"] = $ACSSES_TOKEN;
-header("Location: ./privacy/");
+header("Location: ./processing.php");
 exit;
