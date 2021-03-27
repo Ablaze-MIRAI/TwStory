@@ -25,7 +25,8 @@ $_SESSION["CSRF_TOKEN"] = $csrf;
             }else{
                 window.location = text;
             }
-        }).catch(() => {
+        })
+        .catch(() => {
             alert("エラーが発生しました。TOPへ戻ります<1>");
             window.location = "/";
         });
