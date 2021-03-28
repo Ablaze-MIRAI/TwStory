@@ -1,8 +1,8 @@
 <?php
 session_start();
 header("Content-type: text/html; charset=utf-8");
-$CONF = json_decode(file_get_contents("./env/keys.json"), true);
-require_once "./vendor/autoload.php";
+$CONF = json_decode(file_get_contents("../env/keys.json"), true);
+require_once "../vendor/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 if(empty($_SESSION["OT"]) || empty($_SESSION["OS"]) || empty($_GET["oauth_token"]) || empty($_GET["oauth_verifier"])){

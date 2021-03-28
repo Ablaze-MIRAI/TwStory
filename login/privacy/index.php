@@ -24,7 +24,7 @@ if(isset($_SESSION["CSRF_TOKEN"]) && !empty($_SESSION["CSRF_TOKEN"]) && isset($_
     <script>
         const agree = document.getElementById("agree");
         agree.onclick = () =>{
-            fetch("../cuser.php?csrf=<?=$csrf?>")
+            fetch("/login/cuser.php?csrf=<?=$csrf?>")
             .then(response =>{
                 return response.text();
             })

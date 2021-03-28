@@ -2,8 +2,8 @@
 ini_set("display_errors", 1);
 session_start();
 header("Content-type: text/html; charset=utf-8");
-$CONF = json_decode(file_get_contents("./env/keys.json"), true);
-require_once "./vendor/autoload.php";
+$CONF = json_decode(file_get_contents("../env/keys.json"), true);
+require_once "../vendor/autoload.php";
 use Abraham\TwitterOAuth\TwitterOAuth;
 if(isset($_SESSION["CSRF_TOKEN"]) && !empty($_SESSION["CSRF_TOKEN"]) && isset($_GET["csrf"]) && !empty($_GET["csrf"])){
     if($_SESSION["CSRF_TOKEN"] === $_GET["csrf"]){
