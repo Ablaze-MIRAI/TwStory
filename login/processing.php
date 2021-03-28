@@ -1,9 +1,15 @@
 <?php
 session_start();
+require_once "../system/database/pdo.php";
 if(isset($_SESSION["ACSSES_TOKEN"])){
     $user_id = $_SESSION["ACSSES_TOKEN"]["user_id"];
-    if(file_exists("./db/acsses_token/{$user_id}.json")){
-        if(json_decode(file_get_contents("./db/acsses_token/{$user_id}.json"), true)["auth"] === "allow"){
+    $stmt = $PDO -> query("SELECT EXISTS(SELECT * FROM `login` WHERE `uid` = {$user_id}) AS EXIUSER");
+    $row = $stmt -> fetch(PDO::FETCH_ASSOC);
+    echo $row["EXIUSER"];
+    if($row["EXIUSER"] === 1){
+        $stmt = $PDO -> query("SELECT `auth` FROM `login` WHERE uid = {$user_id} AS AUTH");
+        $row = $stmt -> fetch(PDO::FETCH_ASSOC);
+        if($row["AUTH"] === "allow"){
             header("Location: /home/");
         }else{
             header("Location: ./lock/");
