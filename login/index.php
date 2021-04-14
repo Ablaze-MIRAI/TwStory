@@ -14,7 +14,7 @@ $_SESSION["CSRF_TOKEN"] = $csrf;
 <body>
     <h1>Loading</h1>
     <script>
-        fetch("/login/outh_token.php?csrf=<?=$csrf?>")
+        fetch("/login/auth_token.php?csrf=<?=$csrf?>")
         .then(response => {
             return response.text();
         })

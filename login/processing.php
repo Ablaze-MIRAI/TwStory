@@ -5,14 +5,15 @@ if(isset($_SESSION["ACSSES_TOKEN"])){
     $user_id = $_SESSION["ACSSES_TOKEN"]["user_id"];
     $stmt = $PDO -> query("SELECT EXISTS(SELECT * FROM `login` WHERE `uid` = {$user_id}) AS EXIUSER");
     $row = $stmt -> fetch(PDO::FETCH_ASSOC);
-    echo $row["EXIUSER"];
     if($row["EXIUSER"] === 1){
-        $stmt = $PDO -> query("SELECT `auth` FROM `login` WHERE uid = {$user_id} AS AUTH");
-        $row = $stmt -> fetch(PDO::FETCH_ASSOC);
-        if($row["AUTH"] === "allow"){
-            header("Location: /home/");
+        $stmt = $PDO->prepare("SELECT `auth` FROM `login` WHERE uid = :id");
+        $stmt->bindValue(":id", "1175900055485599744", PDO::PARAM_INT);
+        $stmt->execute();
+        var_dump($stmt);
+        if(true){
+            //header("Location: /home/");
         }else{
-            header("Location: ./lock/");
+            //header("Location: ./lock/");
         }
     }else{
         $csrf = bin2hex(openssl_random_pseudo_bytes(16));
